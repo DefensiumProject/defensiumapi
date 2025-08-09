@@ -1,12 +1,56 @@
 package br.com.defensium.defensiumapi;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+
+import br.com.defensium.defensiumapi.utility.DateUtility;
 
 @SpringBootApplication
-public class Application {
+@RestController
+@RequestMapping({ "", "/" })
+public class Application implements CommandLineRunner {
+
+	private static final Logger log = LoggerFactory.getLogger(Application.class);
+
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
+	}
+
+	@GetMapping
+	public Map<String, String> api() throws UnknownHostException {
+		InetAddress inet = InetAddress.getLocalHost();
+		Map<String, String> information = new LinkedHashMap<>();
+			information.put("Application", "DefensiumService");
+			information.put("Port", "8080");
+			information.put("Version", "v1.1.10");
+			information.put("Issue", DateUtility.getIssue());
+			information.put("Build", DateUtility.getDataHoraAtualFormatada());
+			information.put("Environment", "Desenvolvimento");
+			information.put("Server", System.getProperty("os.name"));
+			information.put("IP", inet.getHostAddress());
+		return information;
+	}
+
+	@Override
+	public void run(String... args) throws Exception {
+		Map<String, String> information = api();
+		ObjectMapper objectMapper = new ObjectMapper();
+		objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
+		log.info(objectMapper.writeValueAsString(information));
 	}
 
 }
