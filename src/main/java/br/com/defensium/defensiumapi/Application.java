@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -26,6 +27,9 @@ public class Application implements CommandLineRunner {
 
 	private static final Logger log = LoggerFactory.getLogger(Application.class);
 
+	@Value(value = "${spring.application.name}")
+	private String application;
+
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
 	}
@@ -34,7 +38,7 @@ public class Application implements CommandLineRunner {
 	public Map<String, String> api() throws UnknownHostException {
 		InetAddress inet = InetAddress.getLocalHost();
 		Map<String, String> information = new LinkedHashMap<>();
-			information.put("Application", "DefensiumService");
+			information.put("Application", application);
 			information.put("Port", "8080");
 			information.put("Version", "v1.1.10");
 			information.put("Issue", DateUtility.getIssue());
