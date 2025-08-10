@@ -1,6 +1,9 @@
 package br.com.defensium.defensiumapi.entity;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -25,6 +28,7 @@ public class CredencialEntity {
 
     @ManyToOne
     @JoinColumn(name = "id_plataforma", nullable = false)
+    @JsonProperty(value = "plataforma")
     private PlataformaEntity plataformaEntity;
 
     @Column(name = "descricao", nullable = false)
