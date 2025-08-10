@@ -30,6 +30,9 @@ public class Application implements CommandLineRunner {
 	@Value(value = "${spring.application.name}")
 	private String application;
 
+	@Value(value = "${server.port}")
+	private String port;
+
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
 	}
@@ -39,7 +42,7 @@ public class Application implements CommandLineRunner {
 		InetAddress inet = InetAddress.getLocalHost();
 		Map<String, String> information = new LinkedHashMap<>();
 			information.put("Application", application);
-			information.put("Port", "8080");
+			information.put("Port", port);
 			information.put("Version", "v1.1.10");
 			information.put("Issue", DateUtility.getIssue());
 			information.put("Build", DateUtility.getDataHoraAtualFormatada());

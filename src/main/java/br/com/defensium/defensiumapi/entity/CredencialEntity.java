@@ -48,7 +48,9 @@ public class CredencialEntity {
     @Column(name = "data_delecao")
     private LocalDateTime dataDelecao;
 
-    public CredencialEntity() { }
+    public CredencialEntity() {
+        this.dataCriacao = LocalDateTime.now();
+    }
 
     public Long getCodigo() {
         return codigo;
