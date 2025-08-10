@@ -23,8 +23,8 @@ public class CredencialEntity {
     @Column(name = "codigo", nullable = false)
     private Long codigo;
 
-    @Column(name = "codigo_public", unique = true, nullable = false)
-    private String codigoPubico;
+    @Column(name = "codigo_publico", unique = true, nullable = false)
+    private UUID codigoPubico = UUID.randomUUID();
 
     @ManyToOne
     @JoinColumn(name = "id_plataforma", nullable = false)
@@ -64,15 +64,15 @@ public class CredencialEntity {
         this.codigo = codigo;
     }
 
-    public String getCodigoPubico() {
-        return codigoPubico;
-    }
+    public UUID getCodigoPubico() {
+		return codigoPubico;
+	}
 
-    public void setCodigoPubico(String codigoPubico) {
-        this.codigoPubico = codigoPubico;
-    }
+	public void setCodigoPubico(UUID codigoPubico) {
+		this.codigoPubico = codigoPubico;
+	}
 
-    public PlataformaEntity getPlataformaEntity() {
+	public PlataformaEntity getPlataformaEntity() {
         return plataformaEntity;
     }
 
