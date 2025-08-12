@@ -1,8 +1,13 @@
 package br.com.defensium.defensiumapi.controller;
 
+import java.util.List;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,6 +29,22 @@ public class CredencialController {
     @PostMapping
     public ResponseEntity<CredencialEntity> saveOne(@RequestBody CredencialEntity credencialEntity) {
         return ResponseEntity.ok().body(this.credencialService.saveOne(credencialEntity));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<CredencialEntity>> getAll() {
+        return ResponseEntity.ok().body(this.credencialService.getAll());
+    }
+
+    @GetMapping("/{credencialID}")
+    public ResponseEntity<CredencialEntity> getAll(@PathVariable("credencialID") Long codigo) {
+        return ResponseEntity.ok().body(this.credencialService.getCredencial(codigo));
+    }
+
+    @PutMapping("/{credencialID}")
+    public ResponseEntity<CredencialEntity> updateOne(@RequestBody CredencialEntity credencialEntity, @PathVariable("credencialID") Long credencialID) {
+        credencialEntity.setCodigo(credencialID);
+        return ResponseEntity.ok().body(this.credencialService.updateOne(credencialEntity));
     }
 
 }

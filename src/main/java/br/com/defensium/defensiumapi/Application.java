@@ -22,7 +22,7 @@ import br.com.defensium.defensiumapi.utility.DateUtility;
 
 @SpringBootApplication
 @RestController
-@RequestMapping({ "", "/" })
+@RequestMapping({ "", "/", "defensium", "defensium/" })
 public class Application implements CommandLineRunner {
 
 	private static final Logger log = LoggerFactory.getLogger(Application.class);

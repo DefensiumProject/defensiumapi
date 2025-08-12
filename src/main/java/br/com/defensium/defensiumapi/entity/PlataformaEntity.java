@@ -21,6 +21,14 @@ public class PlataformaEntity {
     @Column(name = "nome", unique = true, nullable = false)
     private String nome;
 
+    // @Lob
+    @Column(name = "icone")
+    // private byte[] icone;
+    private String icone;
+
+    @Column(name = "url", unique = true)
+    private String url;
+
     @Column(name = "data_criacao", updatable = false, nullable = false)
     private LocalDateTime dataCriacao;
 
@@ -30,7 +38,8 @@ public class PlataformaEntity {
     @Column(name = "data_delecao")
     private LocalDateTime dataDelecao;
 
-    public PlataformaEntity() { }
+    public PlataformaEntity() {
+    }
 
     public Long getCodigo() {
         return codigo;
@@ -46,6 +55,22 @@ public class PlataformaEntity {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public String getIcone() {
+        return icone;
+    }
+
+    public void setIcone(String icone) {
+        this.icone = icone;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public LocalDateTime getDataCriacao() {
