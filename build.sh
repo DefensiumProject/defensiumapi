@@ -1,3 +1,5 @@
+git fetch && git pull &
+
 mvn clean install -DskipTests &
 
 mkdir ../defensiumlog &
