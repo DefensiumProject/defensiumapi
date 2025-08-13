@@ -3,7 +3,7 @@ set -e
 
 nohup mvn clean install package -DskipTests > ../defensiumlog/application.log 2>&1 &
 
-mkdir ../defensiumlog
+mkdir -p ../defensiumlog
 
 pkill -f "java -jar $JAR_PATH" || true
 
