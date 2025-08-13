@@ -1,9 +1,16 @@
-git fetch && git pull &
+#!/bin/bash
+set -e
 
-mvn clean install -DskipTests &
+git fetch && git pull
 
-mkdir ../defensiumlog &
+mvn clean install -DskipTests
+
+mkdir -p ../defensiumlog
+
+pkill -f "java -jar $JAR_PATH" || true
 
 nohup java -jar target/defensium-service.jar > ../defensiumlog/application.log 2>&1 &
+
+sleep 5
 
 tail -n 500 -f ../defensiumlog/application.log
