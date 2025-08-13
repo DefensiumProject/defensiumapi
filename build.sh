@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+git reset --hard
+
 nohup mvn clean install package -DskipTests > ../defensiumlog/application.log 2>&1 &
 
 mkdir -p ../defensiumlog
