@@ -57,7 +57,7 @@ public class Application implements CommandLineRunner {
 		Map<String, String> information = api();
 		ObjectMapper objectMapper = new ObjectMapper();
 		objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
-		log.info(objectMapper.writeValueAsString(information));
+		log.warn(objectMapper.writeValueAsString(information));
 	}
 
 }
