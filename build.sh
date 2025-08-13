@@ -1,8 +1,6 @@
 #!/bin/bash
 set -e
 
-git fetch && git pull
-
 nohup mvn clean install package -DskipTests > ../defensiumlog/application.log 2>&1 &
 
 mkdir ../defensiumlog
