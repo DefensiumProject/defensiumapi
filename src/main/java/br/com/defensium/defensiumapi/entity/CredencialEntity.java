@@ -43,6 +43,9 @@ public class CredencialEntity {
     @Column(name = "url")
     private String url;
 
+	@Column(name = "active", nullable = false)
+	private Boolean active;
+
     @Column(name = "data_criacao", updatable = false, nullable = false)
     private LocalDateTime dataCriacao;
 
@@ -112,7 +115,15 @@ public class CredencialEntity {
         this.url = url;
     }
 
-    public LocalDateTime getDataCriacao() {
+    public Boolean getActive() {
+		return active;
+	}
+
+	public void setActive(Boolean active) {
+		this.active = active;
+	}
+
+	public LocalDateTime getDataCriacao() {
         return dataCriacao;
     }
 

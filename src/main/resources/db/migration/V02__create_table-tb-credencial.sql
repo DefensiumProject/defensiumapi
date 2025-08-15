@@ -6,6 +6,7 @@ create table if not exists tb_credencial (
     usuario varchar (60) not null,
     senha varchar (100) not null,
     url varchar (255) null,
+	active boolean not null default true,
     data_criacao timestamp not null default now(),
     data_edicao timestamp null,
     data_delecao timestamp null,

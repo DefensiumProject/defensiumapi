@@ -2,6 +2,8 @@ package br.com.defensium.defensiumapi.service;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import br.com.defensium.defensiumapi.entity.CredencialEntity;
@@ -9,6 +11,8 @@ import br.com.defensium.defensiumapi.repository.CredencialRepository;
 
 @Service
 public class CredencialService {
+
+	private static final Logger log = LoggerFactory.getLogger(CredencialService.class);
 
     private CredencialRepository credencialRepository;
 
@@ -25,11 +29,18 @@ public class CredencialService {
     }
 
     public CredencialEntity getCredencial(Long codigo) {
-        return this.credencialRepository.findById(codigo).get();
+        return this.credencialRepository.findById(codigo).orElse(null);
     }
 
     public CredencialEntity updateOne(CredencialEntity credencialEntity) {
         return this.credencialRepository.save(credencialEntity);
+    }
+
+    public boolean inativarCredencial(Long codigoCredencial) {
+		log.info("CredencialController -> InativarCredencial -> Código: {}", codigoCredencial);
+        return this.credencialRepository.findById(codigoCredencial)
+            .map(credencial -> this.credencialRepository.inativarCredencial(codigoCredencial) > 0)
+            .orElse(false);
     }
 
 }
