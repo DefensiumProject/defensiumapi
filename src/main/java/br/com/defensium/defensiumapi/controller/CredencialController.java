@@ -61,4 +61,13 @@ public class CredencialController {
         return ResponseEntity.noContent().build();
     }
 
+	@PatchMapping("/{credencialCodigo}/reativar")
+    public ResponseEntity<Void> reativarCredencial(@PathVariable("credencialCodigo") Long credencialCodigo) {
+        log.info("CredencialController -> InativarCredencial -> Código: {}", credencialCodigo);
+        if (!this.credencialService.reativarCredencial(credencialCodigo)) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.noContent().build();
+    }
+
 }
