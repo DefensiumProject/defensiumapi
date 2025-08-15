@@ -1,5 +1,6 @@
 package br.com.defensium.defensiumapi.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -36,12 +37,24 @@ public class CredencialService {
         return this.credencialRepository.save(credencialEntity);
     }
 
-	// TODO: Nesse caso basta realizar um updateOne setando active para false
     public boolean inativarCredencial(Long codigoCredencial) {
 		log.info("CredencialController -> InativarCredencial -> Código: {}", codigoCredencial);
-        return this.credencialRepository.findById(codigoCredencial)
-            .map(credencial -> this.credencialRepository.inativarCredencial(codigoCredencial) > 0)
-            .orElse(false);
+        return this.credencialRepository.findById(codigoCredencial).map(credencial -> {
+            credencial.setActive(false);
+			credencial.setDataEdicao(LocalDateTime.now());
+            this.updateOne(credencial);
+            return true;
+        }).orElse(false);
+    }
+
+	public boolean reativarCredencial(Long codigoCredencial) {
+		log.info("CredencialController -> ReativarCredencial -> Código: {}", codigoCredencial);
+        return this.credencialRepository.findById(codigoCredencial).map(credencial -> {
+            credencial.setActive(true);
+			credencial.setDataEdicao(LocalDateTime.now());
+            this.updateOne(credencial);
+            return true;
+        }).orElse(false);
     }
 
 }
