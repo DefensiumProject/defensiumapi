@@ -36,6 +36,7 @@ public class CredencialService {
         return this.credencialRepository.save(credencialEntity);
     }
 
+	// TODO: Nesse caso basta realizar um updateOne setando active para false
     public boolean inativarCredencial(Long codigoCredencial) {
 		log.info("CredencialController -> InativarCredencial -> Código: {}", codigoCredencial);
         return this.credencialRepository.findById(codigoCredencial)
