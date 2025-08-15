@@ -25,7 +25,7 @@ public class CredencialService {
     }
 
     public List<CredencialEntity> getAll() {
-        return this.credencialRepository.findAll();
+        return this.credencialRepository.findByActiveTrue();
     }
 
     public CredencialEntity getCredencial(Long codigo) {

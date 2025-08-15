@@ -1,5 +1,7 @@
 package br.com.defensium.defensiumapi.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -15,5 +17,7 @@ public interface CredencialRepository extends JpaRepository<CredencialEntity, Lo
 	@Modifying
 	@Query(value = "update tb_credencial set active = false where codigo = :credencialCodigo", nativeQuery = true)
 	public int inativarCredencial(Long credencialCodigo);
+
+	public List<CredencialEntity> findByActiveTrue();
 
 }
