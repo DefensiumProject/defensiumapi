@@ -57,6 +57,7 @@ public class CredencialEntity {
 
     public CredencialEntity() {
         this.dataCriacao = LocalDateTime.now();
+		this.active = true;
     }
 
     public Long getCodigo() {

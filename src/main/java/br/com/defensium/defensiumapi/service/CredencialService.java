@@ -38,7 +38,7 @@ public class CredencialService {
     }
 
     public boolean inativarCredencial(Long codigoCredencial) {
-		log.info("CredencialController -> InativarCredencial -> Código: {}", codigoCredencial);
+		log.warn("CredencialController -> InativarCredencial -> Código: {}", codigoCredencial);
         return this.credencialRepository.findById(codigoCredencial).map(credencial -> {
             credencial.setActive(false);
 			credencial.setDataEdicao(LocalDateTime.now());
