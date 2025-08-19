@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,6 +24,7 @@ import br.com.defensium.defensiumapi.utility.DateUtility;
 @SpringBootApplication
 @RestController
 @RequestMapping({ "", "/", "defensium", "defensium/" })
+@EnableFeignClients(basePackages = "br.com.defensium.defensiumapi.client")
 public class Application implements CommandLineRunner {
 
 	private static final Logger log = LoggerFactory.getLogger(Application.class);

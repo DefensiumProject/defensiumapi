@@ -1,0 +1,23 @@
+meta {
+  name: Registrar Usuário
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://localhost:8080/defensium/autenticador
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "nome": "José Quintinno",
+    "usuario": "jose.quintinno@outlook.com.br",
+    "senha": "senha-forte"
+  }
+}
+
+settings {
+  encodeUrl: true
+}
